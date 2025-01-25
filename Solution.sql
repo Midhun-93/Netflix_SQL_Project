@@ -1,5 +1,5 @@
 -- Netflix Project
-
+DROP TABLE IF EXISTS netflix;
 CREATE TABLE netflix
 (
 	show_id VARCHAR(10),
@@ -16,6 +16,7 @@ CREATE TABLE netflix
     description  VARCHAR(550)
 );
 
+-- view the table
 SELECT * FROM netflix;
 
 -- 1. Count the number of Movies vs TV Shows
@@ -39,7 +40,6 @@ WHERE
 	ranking = 1
 
 -- 3. List all movies released in a specific year (e.g., 2020)
-
 SELECT *
 FROM netflix
 WHERE 
@@ -104,8 +104,7 @@ FROM netflix
 GROUP BY 1
 
 
--- 10.Find each year and the average numbers of content release in India on netflix. 
--- return top 5 year with highest avg content release!
+-- 10.Find each year and the average numbers of content release in India on netflix. return top 5 year with highest avg content release!
 SELECT 
 	EXTRACT(YEAR FROM (TO_DATE(date_added, 'Month dd,YYYY'))),
 	COUNT(*) as yearly_content, 
@@ -145,9 +144,8 @@ WHERE
 	ORDER BY 2 desc
 	LIMIT 10
 	
--- 15 Categorize the content based on the presence of the keywords 'kill' and 'violence' in 
--- the description field. Label content containing these keywords as 'Bad' and all other 
--- content as 'Good'. Count how many items fall into each category.
+-- 15. Categorize the content based on the presence of the keywords 'kill' and 'violence' in the description field. 
+-- Label content containing these keywords as 'Bad' and all other content as 'Good'. Count how many items fall into each category.
 
 WITH new_table 
 AS
